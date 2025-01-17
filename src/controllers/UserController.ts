@@ -54,11 +54,13 @@ const authUser = async(req: Request, res: Response)=>{
 }
 
  const logOut = async(req: Request, res: Response)=>{
-  res.cookie("auth_token", "",{
+  res.cookie("auth_token", "", {
     expires: new Date(0),
-  // Set it to 0 to expire the cookie immediately
-  })
-  res.send();
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "none",
+  });
+  res.status(200).json({ message: "Logged out successfully" });
 }
 
 
