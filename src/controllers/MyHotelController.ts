@@ -1,4 +1,5 @@
 
+
 import {Request,Response}  from "express"
 import multer from "multer";
 import  cloudinary  from 'cloudinary';
@@ -35,4 +36,19 @@ const createMyHotel = async(req: Request, res: Response) => {
 
 };
 
-export default {createMyHotel}
+const getMyHotel = async(req: Request, res: Response)=>{
+
+ 
+
+    try {
+        const hotels = await Hotel.find({userId: req.userId})
+        res.status(200).json(hotels);
+        return;
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Failed to fetch hotels" });
+    }
+
+}
+
+export default {createMyHotel,getMyHotel}

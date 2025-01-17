@@ -16,5 +16,6 @@ const upload = multer({
 
 const router = express.Router();
 router.post("/",upload.array("imageFiles",6),verifyToken, validateHotel, MyHotelController.createMyHotel)
+router.get("/",verifyToken,  MyHotelController.getMyHotel)
 
 export default router
