@@ -7,6 +7,7 @@ import { v2 as cloudinary } from "cloudinary";
 import cookieParser from "cookie-parser"
 import userRoutes from "./routes/UserRoutes"
 import MyHotelRoutes from "./routes/MyHotelRoutes"
+import HotelRoutes from "./routes/HotelRoutes"
 
 
 
@@ -24,6 +25,7 @@ app.use(morgan(":method :url :status :response-time ms"));
 
 app.use("/api/users",userRoutes)
 app.use("/api/my/hotels",MyHotelRoutes)
+app.use("/api/hotels",HotelRoutes)
 
 // Health check endpoint for load balancers 
 app.get("/health", (req: Request, res: Response) => {
