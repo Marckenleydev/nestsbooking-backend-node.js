@@ -82,29 +82,4 @@ GET /bookings/:id: Get details of a specific booking.
 DELETE /bookings/:id: Cancel a booking.
 
 
-├── src
-│   ├── controllers
-│   │   ├── auth.controller.ts
-│   │   ├── hotel.controller.ts
-│   │   ├── room.controller.ts
-│   │   └── booking.controller.ts
-│   ├── models
-│   │   ├── user.model.ts
-│   │   ├── hotel.model.ts
-│   │   ├── room.model.ts
-│   │   └── booking.model.ts
-│   ├── routes
-│   │   ├── auth.routes.ts
-│   │   ├── hotel.routes.ts
-│   │   ├── room.routes.ts
-│   │   └── booking.routes.ts
-│   ├── middlewares
-│   │   ├── auth.middleware.ts
-│   ├── utils
-│   │   ├── jwt.utils.ts
-│   ├── app.ts
-│   └── server.ts
-├── .env
-├── package.json
-├── tsconfig.json
-└── README.md
+
