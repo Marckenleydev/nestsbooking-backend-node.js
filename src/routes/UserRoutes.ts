@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.post("/register",validateMyUserRegister, UserController.registerUser)
 router.post("/login",validateMyUserAuth, UserController.authUser)
+router.post("/me",verifyToken, UserController.getCurrentUser)
 router.post("/logout", UserController.logOut)
 router.post("/validate-token", verifyToken, (req: Request, res: Response)=>{
     res.status(200).send({userId: req.userId})

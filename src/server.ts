@@ -4,13 +4,15 @@ import "dotenv/config"
 import morgan from "morgan"
 import mongoose from "mongoose"
 import { v2 as cloudinary } from "cloudinary";
+import Stripe from "stripe"
 import cookieParser from "cookie-parser"
 import userRoutes from "./routes/UserRoutes"
 import MyHotelRoutes from "./routes/MyHotelRoutes"
 import HotelRoutes from "./routes/HotelRoutes"
+import bookingRoutes from "./routes/MyBookingRoutes"
 
 
-
+const stripe = new Stripe(process.env.STRIPE_API_KEY as string)
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
@@ -26,6 +28,8 @@ app.use(morgan(":method :url :status :response-time ms"));
 app.use("/api/users",userRoutes)
 app.use("/api/my/hotels",MyHotelRoutes)
 app.use("/api/hotels",HotelRoutes)
+app.use("/api/my/bookings",bookingRoutes)
+
 
 // Health check endpoint for load balancers 
 app.get("/health", (req: Request, res: Response) => {

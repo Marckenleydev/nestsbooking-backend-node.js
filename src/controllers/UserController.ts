@@ -63,8 +63,29 @@ const authUser = async(req: Request, res: Response)=>{
   res.status(200).json({ message: "Logged out successfully" });
 }
 
+const getCurrentUser = async(req: Request, res: Response)=>{
+  const userId = req.userId;
 
-export default { registerUser ,authUser,logOut};
+  try {
+    const user = await User.findById(userId).select("-password");
+    if(!user) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+    res.status(200).json(user);
+    return;
+
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Something went wrong" });
+    return;
+    
+  }
+}
+
+
+export default { registerUser ,authUser,logOut,getCurrentUser};
 
 const setAuthToken = (res: Response, userId: string) => {
     const token = jwt.sign(
